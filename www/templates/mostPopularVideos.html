@@ -1,0 +1,20 @@
+<ion-view title="Most Popular Videos" id="page1">
+  <ion-content padding="true" class="has-header">
+    <div class="spinner"><ion-spinner ng-show="LoadingView" icon="spiral"></ion-spinner></div>
+    <form id="mostPopularVideos-form1" class="list">
+      <label class="item item-select" id="mostPopularVideos-select1" name="country">
+        <span class="input-label">Country<img style="margin-left: 10px;" ng-src="{{ flagURL }}"" width="22px"></span>
+        <select ng-model="data.country" ng-change="changeCountry()">
+          <option value="{{ country.key }}" ng-repeat="country in countries">{{country.name}}</option>
+        </select>
+      </label>
+    </form>
+    <ion-list id="mostPopularVideos-list1" ng-show="!LoadingView">
+      <ion-item class="item-thumbnail-left" id="mostPopularVideos-list-item4" ng-repeat="video in videos" ng-click="viewVideo($index)">
+        <img style="object-fit: cover;" ng-src="{{ video.snippet.thumbnails.default.url }}">
+        <h2>{{ video.snippet.channelTitle | limitTo:100 }}</h2>
+        <p style="white-space:normal;">{{ video.snippet.title | limitTo:100 }}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
